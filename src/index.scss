@@ -1,6 +1,17 @@
 @import 'bulma/css/bulma.css';
 
-:root {
+[theme-mode="dark"] {
+  --background-color: #121212;
+  --column-background-color: #333;
+  --dark-color: #e0e0e0;
+  --background-dark-color: #121212;
+  --text-dark-color: #f5f5f5;
+  --text-dark-color-darker: #ffffff;
+  --button-dark-background: #666;
+  --text-color: #f5f5f5;
+}
+
+[theme-mode="light"] {
   --background-color: #c7c7c7;
   --column-background-color: #f5f5f5;
   --dark-color: #e0e0e0;
@@ -8,6 +19,7 @@
   --text-dark-color: #333;
   --text-dark-color-darker: #555;
   --button-dark-background: #666;
+  --text-color: #333;
 }
 
 .add-task-mobile {
@@ -110,47 +122,6 @@ html {
   color: red;
   font-weight: bold;
   margin-top: 5px;
-}
-
-body.dark-mode,
-html.dark-mode {
-  background-color: var(--background-dark-color);
-  color: var(--dark-color);
-}
-
-.modal {
-  display: flex;
-}
-
-body.dark-mode .column {
-  background-color: var(--text-dark-color);
-}
-
-body.dark-mode .card {
-  background-color: #444;
-  border-color: var(--text-dark-color-darker);
-}
-
-body.dark-mode .modal-card {
-  background-color: var(--text-dark-color);
-  color: var(--dark-color);
-}
-
-body.dark-mode .input,
-body.dark-mode .textarea,
-body.dark-mode .select select {
-  background-color: var(--text-dark-color-darker);
-  color: var(--dark-color);
-}
-
-body.dark-mode .button {
-  background-color: var(--button-dark-background);
-  color: var(--dark-color);
-}
-
-body.dark-mode .title,
-body.dark-mode .level-item h2 {
-  color: var(--dark-color) !important;
 }
 
 .card-header .priority {

@@ -47,7 +47,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: left; /* Cambiar a left para un diseño más convencional */
-  background-color: #f9f9f9; /* Fondo claro */
+  background-color: var(--background-color); /* Fondo claro */
   border-radius: 8px; /* Bordes redondeados */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
@@ -111,5 +111,9 @@
 /* Estilos para encabezados */
 h1, h2, h3 {
   margin: 1em 0; /* Espaciado para encabezados */
-  color: #333; /* Color de texto */
+  color: var(--text-dark--color); /* Color de texto */
+}
+
+.title {
+  color: var(--text-dark-color) !important;
 }
