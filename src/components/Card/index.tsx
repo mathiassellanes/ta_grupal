@@ -13,9 +13,12 @@ const Card: FC<CardProps> = ({
   description,
   endDate,
   priority,
-  // id,
+  id,
+  assignedTo,
+  status,
+  index
 }) => {
-  const { dispatchModal } = useStore();
+  const { dispatchModal, setModalCard } = useStore();
 
   return (
     <div className="card draggable">
@@ -27,9 +30,9 @@ const Card: FC<CardProps> = ({
         </span>
         <h5 className="title is-size-5">{title}</h5>
       </div>
-      <button className="image is-20x20 edit-icon" onClick={() => dispatchModal({
-        type: 'OPEN'
-      })}>
+      <button className="image is-20x20 edit-icon" onClick={() => {dispatchModal({
+        type: 'OPENEDIT',
+      }); setModalCard({ id, title, description, endDate, priority, assignedTo, status, index })}}>
         <img src={editIcon} alt="Description of image" />
       </button>
       <p className="description is-size-6">{description}</p>

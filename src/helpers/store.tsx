@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { CardType } from '../constants/types'
 
-const defaultCard = {
+const defaultCard: CardType = {
   id: '',
   title: '',
   description: '',
@@ -21,7 +21,7 @@ type Store = {
   isOpen: boolean
   modalCard: CardType
   setModalCard: (card: CardType) => void
-  dispatchModal: (action: { type: string }) => void
+  dispatchModal: (action: { type: string}) => void
 }
 
 const modalReducer: {
@@ -35,9 +35,9 @@ const modalReducer: {
         modalCard: defaultCard
       }
     case 'OPENEDIT':
-      return{
+      return {
         ...state,
-        isOpen:true,
+        isOpen: true,
       }
     case 'CLOSE':
       return {
@@ -137,21 +137,15 @@ export const useStore = create<Store>((set) => ({
 
   isOpen: false,
 
-  modalCard: {
-    id: '',
-    title: '',
-    description: '',
-    assignedTo: '',
-    priority: '',
-    status: 'Backlog',
-    endDate: '',
-    index: 0,
-  },
+  modalCard: defaultCard,
 
   setModalCard: (card) => set((state) => ({
     ...state,
     modalCard: card
   })),
 
-  dispatchModal: (action) => set((state) => modalReducer(state, action)),
+  dispatchModal: (action: { type: string }) => {set((state) => modalReducer(state, action))},
+
+
+
 }))
