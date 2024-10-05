@@ -13,7 +13,7 @@ function App() {
     cards,
     dispatchModal,
     isOpen,
-    modalCard
+    modalCard,
   } = useStore((state) => state)
 
   const cardByState = cards.reduce((acc: {
@@ -63,6 +63,7 @@ function App() {
         {
           isOpen && (
             <Modal card={modalCard}/>
+            
           )
         }
 
