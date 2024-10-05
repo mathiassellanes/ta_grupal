@@ -1,10 +1,15 @@
+import { useContext } from 'react'
 import { useStore } from './helpers/store'
 
 import Column from './components/Column'
 import { CardType } from './constants/types'
 import Modal from './components/Modals'
 
+import { DarkModeContext } from './helpers/DarkMode'
 import { columns } from './constants'
+
+import sunIcon from './assets/sun-solid.svg'
+import moonIcon from './assets/moon-solid.svg'
 
 import './App.css'
 
@@ -15,6 +20,11 @@ function App() {
     isOpen,
     modalCard,
   } = useStore((state) => state)
+
+  const {
+    isDarkMode,
+    toggleDarkMode
+  } = useContext(DarkModeContext);
 
   const cardByState = cards.reduce((acc: {
     [key: string]: CardType[]
@@ -34,12 +44,12 @@ function App() {
     <>
       <div className="has-text-black">
         <div style={{ position: 'relative' }}>
-          <h1 className="title has-text-black has-text-centered mt-5">
+          <h1 className="title has-text-centered mt-5">
             GESTOR DE TAREAS
           </h1>
-          <button className="button mb-5" id="toggle-dark-mode">
+          <button onClick={toggleDarkMode} className="button mb-5" id="toggle-dark-mode">
             <span className="icon is-small">
-              <img id="toggle-image" src="assets/moon-solid.svg" />
+              <img id="toggle-image" src={isDarkMode ? moonIcon : sunIcon} alt="moon" />
             </span>
           </button>
         </div>
