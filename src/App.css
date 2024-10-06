@@ -1,10 +1,13 @@
 
-#root {  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+#root {
   text-align: left;
   background-color: var(--background-color);
   border-radius: 8px;
+  height: 100%;
+}
+
+.app-container {
+  height: 100%;
 }
 
 .card {
@@ -23,9 +26,9 @@
 
 h1, h2, h3 {
   margin: 1em 0; /* Espaciado para encabezados */
-  color: var(--text-dark--color); /* Color de texto */
+  color: var(--text--color) !important; /* Color de texto */
 }
 
 .title {
-  color: var(--text-dark-color) !important;
+  color: var(--text-color) !important;
 }

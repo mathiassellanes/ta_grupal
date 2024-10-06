@@ -1,25 +1,27 @@
 @import 'bulma/css/bulma.css';
 
 [theme-mode="dark"] {
-  --background-color: #121212;
+  --background-color: #1d2125;
   --column-background-color: #333;
   --dark-color: #e0e0e0;
   --background-dark-color: #121212;
   --text-dark-color: #f5f5f5;
   --text-dark-color-darker: #ffffff;
   --button-dark-background: #666;
-  --text-color: #f5f5f5;
+  --text--color: #f5f5f5;
+  --card-background-color: #1d2125;
 }
 
 [theme-mode="light"] {
-  --background-color: #c7c7c7;
-  --column-background-color: #f5f5f5;
+  --background-color: #ffffff;
+  --column-background-color: #f7f8f9;
   --dark-color: #e0e0e0;
   --background-dark-color: #121212;
   --text-dark-color: #333;
   --text-dark-color-darker: #555;
   --button-dark-background: #666;
-  --text-color: #333;
+  --text--color: #333;
+  --card-background-color: #ffffff;
 }
 
 .add-task-mobile {
@@ -44,35 +46,33 @@ html {
   top: 0;
 }
 
-.columns-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  max-width: 100%;
-  align-items: flex-start;
-  /* Asegura que las columnas crezcan hacia abajo sin afectar a las cards */
-  // height: 100vh; // Hacer que las columnas ocupen el alto total de la pantalla
-  // align-items: stretch; // Asegurar que todas las columnas ocupen la misma altura
+.title--with-theme {
+  color: var(--text--color) !important;
 }
 
+.columns {
+  height: 100%;
 
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    align-items: flex-start;
+  }
+}
 
 .column {
-  // flex-basis: calc(20% - 10px);
+  flex-basis: calc(20% - 10px);
   flex: 1;
-  /* Asegura que 5 columnas ocupen el espacio horizontal */
   margin: 0 10px;
-  /* Espacio entre las columnas */
-  // padding: 10px;
   background-color: var(--column-background-color);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Ajuste automático del tamaño según el contenido */
   padding: 10px;
   min-height: 100px;
-  /* Altura mínima de la columna */
 }
 
 .card {
@@ -88,7 +88,7 @@ html {
   display: flex;
   flex-direction: column;
   flex-grow: 0;
-  /* Evitamos que las cards crezcan */
+  background-color: var(--card-background-color);
 }
 
 .level {

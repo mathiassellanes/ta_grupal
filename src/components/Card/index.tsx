@@ -24,23 +24,21 @@ const Card: FC<CardProps> = ({
     <div className="card draggable">
       <div className="card-header">
         <span className="priority text-highlight">
-          <figure className="image is-16x16">
-            <img src={redFlag} alt="Priority flag icon" /> {priority}
-          </figure>
+          <img src={redFlag} alt="Priority flag icon" /> {priority}
         </span>
         <h5 className="title is-size-5">{title}</h5>
       </div>
-      <button className="image is-20x20 edit-icon" onClick={() => {dispatchModal({
-        type: 'OPENEDIT',
-      }); setModalCard({ id, title, description, endDate, priority, assignedTo, status, index })}}>
+      <button className="image is-20x20 edit-icon" onClick={() => {
+        dispatchModal({
+          type: 'OPENEDIT',
+        }); setModalCard({ id, title, description, endDate, priority, assignedTo, status, index })
+      }}>
         <img src={editIcon} alt="Description of image" />
       </button>
       <p className="description is-size-6">{description}</p>
       <div className="card-footer">
         <span className="deadline text-highlight">
-          <figure className="image is-16x16">
-            <img src={calendar} alt="Calendar icon" /> {endDate}
-          </figure>
+          <img src={calendar} alt="Calendar icon" /> {endDate}
         </span>
       </div>
     </div>

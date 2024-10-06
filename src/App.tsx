@@ -10,9 +10,9 @@ import { columns } from './constants'
 
 import sunIcon from './assets/sun-solid.svg'
 import moonIcon from './assets/moon-solid.svg'
+import { getCards } from './api'
 
 import './App.css'
-import { getCards } from './api'
 
 function App() {
   const {
@@ -52,50 +52,51 @@ function App() {
   }, [])
 
   return (
-    <>
-      <div className="has-text-black">
-        <div style={{ position: 'relative' }}>
-          <h1 className="title has-text-centered mt-5">
-            GESTOR DE TAREAS
-          </h1>
-          <button onClick={toggleDarkMode} className="button mb-5" id="toggle-dark-mode">
-            <span className="icon is-small">
-              <img id="toggle-image" src={isDarkMode ? moonIcon : sunIcon} alt="moon" />
-            </span>
-          </button>
-        </div>
-        <div className="interstice is-flex is-justify-content-end pr-3">
-          <button
-            onClick={() => dispatchModal({
-              type: 'OPENCREATE'
-            })}
-            className="interstice js-modal-trigger button mb-5 add-task"
-          >
-            Agregar tarea
-          </button>
-          <button
-            className="interstice js-modal-trigger js-modal-trigger-mobile button mb-5 add-task-mobile"
-            onClick={() => dispatchModal({
-              type: 'OPENCREATE'
-            })}
-          >
-            <span>+</span>
-          </button>
-        </div>
-        <div className="columns">
-          {
-            columns.map((column) => (
-              <Column title={column} items={cardByState[column]} />
-            ))
-          }
-        </div>
+    <div className="has-text-black app-container">
+      <div style={{ position: 'relative' }}>
+        <h1 className="title--with-theme title has-text-centered mt-5">
+          GESTOR DE TAREAS
+        </h1>
+        <button onClick={toggleDarkMode} className="button mb-5" id="toggle-dark-mode">
+          <span className="icon is-small">
+            <img id="toggle-image" src={isDarkMode ? moonIcon : sunIcon} alt="moon" />
+          </span>
+        </button>
+      </div>
+      <div className="interstice is-flex is-justify-content-end pr-3">
+        <button
+          onClick={() => dispatchModal({
+            type: 'OPENCREATE'
+          })}
+          className="interstice js-modal-trigger button mb-5 add-task"
+        >
+          Agregar tarea
+        </button>
+        <button
+          className="interstice js-modal-trigger js-modal-trigger-mobile button mb-5 add-task-mobile"
+          onClick={() => dispatchModal({
+            type: 'OPENCREATE'
+          })}
+        >
+          <span>+</span>
+        </button>
+      </div>
+      <div className="columns">
         {
-          isOpen && (
-            <Modal card={modalCard} />
-          )
+          columns.map(({
+            title,
+            image
+          }) => (
+            <Column title={title} items={cardByState[title]} image={image} />
+          ))
         }
-      </div >
-    </>
+      </div>
+      {
+        isOpen && (
+          <Modal card={modalCard} />
+        )
+      }
+    </div>
   )
 }
 
