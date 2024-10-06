@@ -46,10 +46,14 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: left; /* Cambiar a left para un diseño más convencional */
-  background-color: var(--background-color); /* Fondo claro */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  text-align: left;
+  /* Cambiar a left para un diseño más convencional */
+  background-color: var(--background-color);
+  /* Fondo claro */
+  border-radius: 8px;
+  /* Bordes redondeados */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Sombra sutil */
 }
 
 /* Estilos para el logo */
@@ -58,12 +62,16 @@
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
-  display: block; /* Para centrar el logo */
-  margin: 0 auto; /* Centrar el logo */
+  display: block;
+  /* Para centrar el logo */
+  margin: 0 auto;
+  /* Centrar el logo */
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -73,6 +81,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -87,31 +96,41 @@
 
 /* Estilos para las tarjetas */
 .card {
-  background-color: #ffffff; /* Fondo blanco para las tarjetas */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para las tarjetas */
-  padding: 2em;
-  margin: 1em 0; /* Espaciado entre tarjetas */
-  transition: transform 0.2s; /* Efecto al pasar el mouse */
+  flex-grow: 1;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .card:hover {
-  transform: scale(1.02); /* Escalar ligeramente al pasar el mouse */
+  transform: scale(1.02);
+  /* Escalar ligeramente al pasar el mouse */
 }
 
 /* Estilo para enlaces y texto */
 .read-the-docs {
   color: #888;
-  text-decoration: none; /* Eliminar subrayado */
-  transition: color 0.3s; /* Transición suave para color */
+  text-decoration: none;
+  /* Eliminar subrayado */
+  transition: color 0.3s;
+  /* Transición suave para color */
 }
+
 .read-the-docs:hover {
-  color: #646cff; /* Cambiar color al pasar el mouse */
+  color: #646cff;
+  /* Cambiar color al pasar el mouse */
 }
 
 /* Estilos para encabezados */
-h1, h2, h3 {
-  margin: 1em 0; /* Espaciado para encabezados */
-  color: var(--text-dark--color); /* Color de texto */
+h1,
+h2,
+h3 {
+  margin: 1em 0;
+  /* Espaciado para encabezados */
+  color: var(--text-dark--color);
+  /* Color de texto */
 }
 
 .title {
