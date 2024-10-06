@@ -44,22 +44,35 @@ html {
   top: 0;
 }
 
-.columns {
+.columns-container {
   display: flex;
-  flex-wrap: wrap;
-  height: 100%;
-  gap: 5px;
-  justify-content: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  max-width: 100%;
+  align-items: flex-start;
+  /* Asegura que las columnas crezcan hacia abajo sin afectar a las cards */
+  // height: 100vh; // Hacer que las columnas ocupen el alto total de la pantalla
+  // align-items: stretch; // Asegurar que todas las columnas ocupen la misma altura
 }
 
+
+
 .column {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-basis: calc(20% - 10px);
-  align-items: center;
+  // flex-basis: calc(20% - 10px);
+  flex: 1;
+  /* Asegura que 5 columnas ocupen el espacio horizontal */
+  margin: 0 10px;
+  /* Espacio entre las columnas */
+  // padding: 10px;
   background-color: var(--column-background-color);
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Ajuste automático del tamaño según el contenido */
+  padding: 10px;
+  min-height: 100px;
+  /* Altura mínima de la columna */
 }
 
 .card {
@@ -74,6 +87,19 @@ html {
   min-height: 150px;
   display: flex;
   flex-direction: column;
+  flex-grow: 0;
+  /* Evitamos que las cards crezcan */
+}
+
+.level {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.image {
+  width: 16px;
+  height: 16px;
 }
 
 .description {
