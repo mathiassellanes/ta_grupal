@@ -1,11 +1,5 @@
-import { useEffect, useState } from "react";
 import { CardType } from "../../constants/types";
 import { useStore } from "../../helpers/store";
-import Input from "../FormInputs/input";
-
-import './styles.scss'
-import Select from "../FormInputs/select";
-import { postCard, deleteCard, putCard } from "../../api";
 
 const Modal = ({
   card = {
@@ -21,136 +15,102 @@ const Modal = ({
 }: {
   card?: CardType
 }) => {
-  const [form, setForm] = useState(card)
 
   const {
     dispatchModal,
-    addCard,
-    updateCard,
-    deleteCard: deleteCardStore,
-  } = useStore((state) => state);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  const handleSubmit = async () => {
-    if (card.id) {
-      const updatedCard = await putCard(card.id, form)
-
-      updateCard(card.id, updatedCard)
-
-      dispatchModal({ type: 'CLOSE' })
-    } else {
-      const card = await postCard(form)
-      addCard(card)
-      dispatchModal({ type: 'CLOSE' })
-    }
-  }
-
-  const handleDelete = async () => {
-    await deleteCard(card.id)
-
-    deleteCardStore(card.id)
-
-    dispatchModal({ type: 'CLOSE' })
-  }
+    
+  } = useStore((state) => state)
 
   return (
-    <div className="modal show-modal" id="addcard">
-      <div className="modal-background" />
+    <div className="modal" id="addcard">
+      <div className="modal-background"></div>
       <div className="modal-card">
         <header className="modal-card-head">
-          <p className="modal-card-title">{card.id ? 'Editar Tarea' : 'Nueva Tarea'}</p>
+          <p className="modal-card-title">Modal title</p>
           <button
-            onClick={() => { dispatchModal({ type: 'CLOSE' }) }}
+            onClick={() => { dispatchModal({type: 'CLOSE' })}}
             className="delete"
             aria-label="close"
           ></button>
         </header>
         <form className="modal-card-body">
-          <Input
-            label="Nombre de la tarea"
-            value={form.title}
-            onChange={handleChange}
-            name="title"
-          />
-          <Input
-            label="Descripción de la tarea"
-            value={form.description}
-            onChange={handleChange}
-            name="description"
-            type="textarea"
-          />
-          <Input
-            label="Asignado"
-            value={form.assignedTo}
-            onChange={handleChange}
-            name="assignedTo"
-          />
-          <div className="field is-flex is-justify-content-space-between">
-            <Select
-              label="Estado"
-              options={[
-                { value: 'Backlog', label: 'Backlog' },
-                { value: 'To Do', label: 'To Do' },
-                { value: 'In Progress', label: 'In Progress' },
-                { value: 'Blocked', label: 'Blocked' },
-                { value: 'Done', label: 'Done' },
-              ]}
-              defaultValue={card.status}
-              onChange={handleChange}
-              value={form.status}
-              name="status"
+          <div className="control">
+            <label className="label">Nombre de la tarea</label>
+            <input
+              className="input"
+              id="title"
+              type="text"
+              placeholder="Text input"
+              defaultValue={card?.title}
             />
-            <Select
-              label="Prioridad"
-              options={[
-                { value: 'High', label: 'Alta' },
-                { value: 'Medium', label: 'Media' },
-                { value: 'Low', label: 'Baja' },
-              ]}
-              onChange={handleChange}
-              value={form.priority}
-              defaultValue={card.priority}
-              name="priority"
-            />
+            <span id="errorTitle" className="error"></span>
           </div>
-          <Input
-            label="Fecha Límite"
-            value={form.endDate}
-            onChange={handleChange}
-            name="endDate"
-            type="date"
-          />
+          <div className="field">
+            <label className="label">Descripción de la tarea</label>
+            <div className="control">
+              <textarea
+                id="description"
+                className="input"
+                placeholder="Textarea"
+                defaultValue={card?.description}
+              ></textarea>
+              <span id="errorDescription" className="error"></span>
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Asignado</label>
+            <div className="control">
+              <input type="text" id="assigned" className="input" defaultValue={card?.assignedTo} />
+            </div>
+          </div>
+          <div className="field is-flex is-justify-content-space-between">
+            <div className="control">
+              <label className="label">Estado</label>
+              <div className="select">
+                <select id="state" defaultValue={card?.status}>
+                  <option value="Backlog">Backlog</option>
+                  <option value="To Do">To Do</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Blocked">Blocked</option>
+                  <option value="Done">Done</option>
+                </select>
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Prioridad</label>
+              <div className="control">
+                <div className="select">
+                  <select id="priority" defaultValue={card.priority}>
+                    <option value="High">Alta</option>
+                    <option value="Medium">Media</option>
+                    <option value="Low">Baja</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Fecha Límite</label>
+            <div className="control">
+              <input id="deadline" className="input" type="date" defaultValue={card.endDate} />
+              <span id="errorDeadLine" className="error"></span>
+            </div>
+          </div>
           <footer className="py-2 is-flex is-justify-content-space-between">
-            {
-              card.id ? (
-                <button
-                  onClick={handleDelete}
-                  type="button"
-                  className="button is-danger"
-                >
-                  Eliminar
-                </button>
-              ) : (
-                <button
-                  onClick={() => { { dispatchModal({ type: 'CLOSE' }) } }}
-                  type="button"
-                  className="button"
-                >
-                  Cancelar
-                </button>
-              )
-            }
             <button
-              onClick={handleSubmit}
+              // onclick="handleCardCancel()"
+              onClick = {() => {{ dispatchModal({type: 'CLOSE' })}}}
+              type="button"
+              className="button"
+            >
+              Cancelar
+            </button>
+            <button
+              // onclick="handleCardSave()"
+              // HAY QUE CAMBIAR ESTO
               type="button"
               className="button is-success"
-
+              
             >
               Guardar cambios
             </button>
